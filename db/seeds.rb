@@ -7,5 +7,5 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 if Rails.env.production?
-  User.create!(first_name: "Admin", last_name: "User", email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASSWORD'], admin: true)
+  User.find_or_create_by(first_name: "Admin", last_name: "User", email: ENV['ADMIN_EMAIL'], password: ENV['ADMIN_PASSWORD'], admin: true)
 end
