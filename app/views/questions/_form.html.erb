@@ -1,0 +1,40 @@
+<%= form_with(model: question) do |form| %>
+  <div>
+    <%= form.label :quiz_id, style: "display: block" %>
+    <%= form.text_field :quiz_id %>
+  </div>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div>
+    <%= form.label :answer1, style: "display: block" %>
+    <%= form.text_field :answer1 %>
+  </div>
+
+  <div>
+    <%= form.label :answer2, style: "display: block" %>
+    <%= form.text_field :answer2 %>
+  </div>
+
+  <div>
+    <%= form.label :answer3, style: "display: block" %>
+    <%= form.text_field :answer3 %>
+  </div>
+
+  <div>
+    <%= form.label :answer4, style: "display: block" %>
+    <%= form.text_field :answer4 %>
+  </div>
+
+  <div>
+    <%= form.label :correct_answer, style: "display: block" %>
+    <%= form.number_field :correct_answer %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

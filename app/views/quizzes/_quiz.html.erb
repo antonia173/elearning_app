@@ -1,0 +1,14 @@
+<div class="card m-3 p-0">
+  <div class="card-body">
+    <h5 class="card-title"><%= quiz.title %></h5>
+    <p class="card-text">Number of questions: <%= quiz.questions.length %></p>
+    <%= link_to "Begin quiz", quiz, class: "btn btn-primary"%>
+    <% if current_user.admin? %>
+        <%= link_to "Edit", edit_quiz_path(quiz), class: "btn btn-secondary m-1" %>
+        <%= button_to "Delete", quiz, method: :delete, class: "btn btn-danger m-1" %>
+    <% end %>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">Last updated <%= time_ago_in_words(quiz.updated_at) %> ago</small>
+  </div>
+</div>

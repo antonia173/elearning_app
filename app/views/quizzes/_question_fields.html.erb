@@ -1,0 +1,19 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div class="card mb-4">
+    <div class="card-body">
+      <%= f.label :content, "Question" %>
+      <%= f.text_area :content, class: "form-control mb-3" %>
+
+      <%= 1.upto(4) do |answer_index| %>
+        <%= f.label "answer#{answer_index}", "Answer #{answer_index}" %>
+        <%= f.text_field "answer#{answer_index}", class: "form-control mb-3" %>
+      <% end %>
+
+      <%= f.label :correct_answer, "Correct Answer" %>
+      <%= f.select :correct_answer, (1..4).to_a, {}, class: "form-control mb-3" %>
+
+      <button type="button" data-action="nested-form#remove" class="btn btn-danger btn-sm">Remove Question</button>
+      <%= f.hidden_field :_destroy %>
+    </div>
+  </div>
+</div>

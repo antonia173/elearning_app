@@ -1,0 +1,29 @@
+<%= form_with model: @quiz, local: true, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="border rounded p-3 my-3">
+        <%= f.label :title %>
+        <%= f.text_field :title, autofocus: true, autocomplete: 'title', class: 'form-control' %>
+      </div>
+  </div>
+</div>
+
+  <template data-nested-form-target="template">
+    <%= f.fields_for :questions, Question.new, child_index: 'NEW_RECORD' do |question_fields| %>
+      <%= render "question_fields", f: question_fields %>
+    <% end %>
+  </template>
+
+  <%= f.fields_for :questions do |question_fields| %>
+    <%= render "question_fields", f: question_fields %>
+  <% end %>
+
+  <!-- Inserted elements will be injected before that target. -->
+  <div data-nested-form-target="target"></div>
+
+  <button type="button" data-action="nested-form#add" class="btn btn-secondary btn-sm mb-5">Add Question</button>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary btn-lg" %>
+    <%= link_to "[ Back to quizzes ]", quizzes_path, class: "mx-3 text-primary"%>
+  </div>
+<% end %>

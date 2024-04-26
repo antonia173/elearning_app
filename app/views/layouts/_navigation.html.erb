@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <%= link_to "ElearningApp", root_path, class: "navbar-brand", id: "logo"%>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Lessons</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Quizzes", quizzes_path, class: "nav-link"%>
+        </li>
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <div class="navbar-nav"> 
+        <% if user_signed_in?%>
+          <% if current_user.admin? %>
+            <div class="dropdown m-1">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Create
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                  <%= link_to "New lesson", "#", class: "dropdown-item" %>
+                  <%= link_to "New quiz", new_quiz_path, class: "dropdown-item" %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="dropdown m-1">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.first_name %> <%= current_user.last_name %>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <%= link_to "Edit your profile", edit_user_registration_path(current_user), class: "dropdown-item"%>
+                <%= link_to "Cancel my account", registration_path(current_user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "dropdown-item text-danger" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to log out?" }  %>
+            </ul>
+          </div>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Log in",  new_user_session_path, class: "nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link"%>
+          </li>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
