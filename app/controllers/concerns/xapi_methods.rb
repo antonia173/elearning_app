@@ -4,8 +4,6 @@ module XapiMethods
   extend ActiveSupport::Concern
 
   def remote_lrs
-    Rails.logger.info("INFO: xapi username #{ENV['XAPI_USERNAME']}")
-    Rails.logger.info("INFO: xapi pass #{ENV['XAPI_PASSWORD']}")
     Xapi.create_remote_lrs(end_point: 'https://elearningapp.lrs.io/xapi/', user_name: ENV['XAPI_USERNAME'], password: ENV['XAPI_PASSWORD'] )
   end
 
